@@ -57,7 +57,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter "https://twitter.com/nitinshyamk"
+  username               : &twitter "nitinshyamk"
 facebook:
   username               :
   app_id                 :
@@ -83,8 +83,8 @@ author:
   name             : "Nitin Shyamkumar"
   avatar           : "profile.png"
   bio              : "NYU Courant PhD student broadly interested in computational mathematics"
-  location         : "Washington, DC"
-  employer         : "Applied Predictive Technologies"
+  location         : "Seattle, WA"
+  employer         : 
   pubmed           :
   googlescholar    : "https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en&oi=ao"
   email            : 
@@ -102,14 +102,14 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         : "https://www.linkedin.com/in/nitinshyamkumar/"
+  linkedin         : "nitinshyamkumar"
   orcid            :
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "https://twitter.com/nitinshyamk"
+  twitter          : "nitinshyamk"
   vine             :
   weibo            :
   xing             :
