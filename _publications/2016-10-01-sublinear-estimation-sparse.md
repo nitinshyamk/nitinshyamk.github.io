@@ -3,6 +3,7 @@ title: "Sublinear estimation of a single element in sparse linear systems"
 collection: publications
 permalink: /publication/2016-sublinear-estimation-sparse
 date: 2016-10-01
+authors: 'Nitin Shyamkumar, Siddhartha Banerjee, Peter Lofgren'
 excerpt: ' '
 venue: '2016 54th Annual Allerton Conference on Communication, Control, and Computing (Allerton)'
 paperurl: 'https://ieeexplore.ieee.org/document/7852323'
