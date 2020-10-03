@@ -1,12 +1,12 @@
-	---
-	permalink: /
-	title: "Nitin Shyamkumar"
-	excerpt: "About me"
-	author_profile: true
-	redirect_from: 
-	  - /about/
-	  - /about.html
-	---
+---
+permalink: /
+title: "Nitin Shyamkumar"
+excerpt: "About me"
+author_profile: true
+redirect_from: 
+  - /about/
+  - /about.html
+---
 
 I'm a first year PhD student at NYU Courant, broadly interested in the intersection of applied mathematics, machine learning, and scientific computing. 
 
