@@ -5,7 +5,7 @@ permalink: /publications/
 author_profile: true
 ---
 
-Here are some selected publications. For the full list, see <u><a href="{{author.googlescholar}}">my Google Scholar profile</a></u>
+Here are some selected publications. For the full list, see my [Google Scholar profile](https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en&oi=ao)
 
 {% include base_path %}
 
