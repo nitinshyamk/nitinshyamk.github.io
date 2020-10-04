@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm a first year PhD student at NYU Courant (currently remote in Seattle, WA), broadly interested in the intersection of applied mathematics, machine learning, and scientific computing. I am especially interested in problems related to data driven control, model based RL, and applied mathematics for practical problems.
+I'm a first year PhD student at NYU Courant (currently remote in Seattle, WA), broadly interested in the intersection of applied mathematics, machine learning, and scientific computing. I am especially interested in problems related to data driven control, model based RL, and applied mathematics for practical problems. On the more practical side, I am interested in working with GPU accelerated computational routines, see my [github](https://github.com/nitinshyamk/operator-inference-cuda) for some examples of recent projects.
 
 Previously, I worked for three years as a Senior Software Engineer at Applied Predictive Technologies for three years on pipelines for statistical modeling. At APT, I provided technical and team leadership on a team of four, mentored multiple junior teammates, led or co-led a few research investigations, co-led APT's Cornell recruiting efforts, and helped contribute to a range of diversity initiatives. 
 
