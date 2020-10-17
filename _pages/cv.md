@@ -6,4 +6,4 @@ author_profile: true
 redirect_from:
   - /resume
 ---
-An [academic CV](https://drive.google.com/file/d/1ofWnU7L-ewq_fnKclOdRO93CgySfJ7YJ/view?usp=sharing). An industry style resume forthcoming.
+An [academic CV](https://drive.google.com/file/d/1X39TYmhxxiXH9a8NaZv8VG9QyPAtFepf/view?usp=sharing). An industry style resume forthcoming.
