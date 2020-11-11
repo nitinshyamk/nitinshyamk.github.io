@@ -10,7 +10,8 @@ redirect_from:
 ---
 
 I try to maintain a wide and varied reading list beyond those relevant to my immediate career. If you have any suggestions, I would love to hear them.
-
+## Technical Reading
+[Measure Theory (Robert Bartle)](https://drive.google.com/file/d/1lh1vWrOqlVuQSprJoNZ3VJENGPx5ZChL/view?usp=sharing)
 ## 2020
 * They Say, I Say - _Cathy Birkenstein_
 * Images of Enlightenment: Tibetan Art in Practice - Jonathan Landlaw
