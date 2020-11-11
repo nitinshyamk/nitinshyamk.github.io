@@ -1,6 +1,5 @@
 ---
 title: 'Structural education reform - progressive blind spots'
-======
 date: 2020-11-10
 permalink: /posts/2020/letterToWAreps/
 tags:
