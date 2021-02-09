@@ -8,8 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-I'm a first year PhD student at NYU Courant (currently remote in Seattle, WA), broadly interested in the intersection of applied mathematics, machine learning, and scientific computing. I am especially interested in problems related to data driven control, model based RL, and applied mathematics for practical problems. On the more practical side, I am interested in working with GPU accelerated computational routines, see my [github](https://github.com/nitinshyamk/operator-inference-cuda) for some examples of recent projects.
+I'm a first year PhD student at NYU Courant (currently remote in Seattle, WA) studying machine learning focusing on data driven control and model based RL. I'm also interested in ML engineering, specifically GPU accelerated routines, see my [github](https://github.com/nitinshyamk/operator-inference-cuda) for recent projects.
 
-Previously, I worked for three years as a Senior Software Engineer at Applied Predictive Technologies on statistical modeling pipelines. At APT, I provided technical and team leadership on a team of four, mentored multiple junior teammates, led or co-led a few research investigations, co-led APT's Cornell recruiting efforts, and helped contribute to a range of diversity initiatives. 
+Previously I worked for three years as a Senior Software Engineer at Applied Predictive Technologies on modeling pipelines. I provided technical and team leadership on a team of four, mentored multiple junior teammates, led or co-led research investigations, co-led APT's Cornell recruiting efforts, and contributed to a range of diversity initiatives. 
 
-I graduated Phi Beta Kappa from Cornell University in May 2017. I received a B.A. in Mathematics (cum laude), a B.A. in Computer Science, and was a Tanner Dean's Scholar. I spent most of my time outside class doing research. I worked with Siddhartha Banerjee for about a year on randomized personal PageRank algorithms to solve sparse matrix equations, and for a year and a half in Jesse H. Goldberg's computational neuroscience lab studying mammalian motor control.
+I graduated Phi Beta Kappa from Cornell University as a Tanner Dean's Scholar in May 2017 with B.A.s in Mathematics (cum laude) and Computer Science. I spent most of my time outside class doing research, first with Jesse Goldberg in the field of mammalian motor control, and secondly with Siddhartha Banerjee on randomized personal PageRank.
+
