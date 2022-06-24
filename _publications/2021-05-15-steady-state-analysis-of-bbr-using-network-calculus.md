@@ -2,7 +2,7 @@
 title: "Steady State Analysis of BBR Using Network Calculus"
 collection: publications
 permalink: /publication/2021-steady-state-analysis-of-bbr-using-network-calculus
-date: 2020-12-10
+date: 2021-05-15
 authors: 'Nitin Shyamkumar'
 excerpt: ' '
 venue: 'Preprint'
