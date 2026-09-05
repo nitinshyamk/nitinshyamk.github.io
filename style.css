@@ -49,6 +49,7 @@
 html { -webkit-text-size-adjust: 100%; }
 
 body {
+  position: relative;
   margin: 0 auto;
   padding: 0 1.5rem 4rem;
   max-width: var(--measure);
@@ -153,16 +154,20 @@ a:hover { text-decoration-color: currentColor; }
 .sections a { color: var(--muted); text-decoration: none; }
 .sections a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.3em; }
 
+/* Top-right corner of the content column. Deliberately quiet: it sits at
+   rule contrast until hovered. */
 .theme-toggle {
-  margin: -0.35rem 0 -0.35rem auto;
-  padding: 0.35rem;
+  position: absolute;
+  top: 1.4rem;
+  right: 1.5rem;
+  padding: 0.3rem;
   display: inline-flex;
   background: none;
   border: 0;
   border-radius: 50%;
   color: var(--rule);
   cursor: pointer;
-  transition: color 120ms ease;
+  transition: color 140ms ease;
 }
 .theme-toggle:hover { color: var(--muted); }
 .theme-toggle svg { display: block; }
@@ -280,6 +285,7 @@ footer {
 
 @media (max-width: 34rem) {
   body { padding: 0 1.25rem 3rem; }
+  .theme-toggle { top: 1rem; right: 1.25rem; }
   .masthead {
     flex-direction: column;
     align-items: flex-start;
