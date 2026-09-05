@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT / "vendor"))
 import markdown2  # noqa: E402  (vendored, see vendor/README.md)
 
 # "v2" builds the parallel preview site; "." builds in place at the repo root.
-OUT = "v2"
+OUT = "."
 
 EXTRAS = [
     "metadata",
@@ -90,6 +90,28 @@ def render_publications():
     return "\n".join(parts)
 
 
+NOT_FOUND = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found - Nitin Shyamkumar</title>
+<link rel="icon" href="/images/site-logo.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+<section>
+<h2>404</h2>
+<p>There's nothing at this address.</p>
+<p><a href="/">Back to nitinshyamk.github.io</a></p>
+</section>
+</main>
+</body>
+</html>
+"""
+
+
 def stub(target):
     esc = html.escape(target, quote=True)
     return (
@@ -128,8 +150,7 @@ def main():
 
     print(f"building into {OUT}/")
     write("index.html", page)
-    write("404.html", page.replace(
-        "<title>Nitin Shyamkumar</title>", "<title>Not found - Nitin Shyamkumar</title>"))
+    write("404.html", NOT_FOUND)
 
     if OUT == ".":
         for path, target in sorted(REDIRECTS.items()):

@@ -8,6 +8,13 @@
 <link rel="icon" href="/images/site-logo.png">
 <link rel="canonical" href="https://nitinshyamk.github.io/">
 <link rel="stylesheet" href="/style.css">
+<script>
+  /* Applied before first paint so a stored choice never flashes. */
+  try {
+    var t = localStorage.getItem("theme");
+    if (t) document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
 </head>
 <body>
 
@@ -28,6 +35,12 @@
   <a href="#about">About</a>
   <a href="#publications">Publications</a>
   <a href="#resume">Resume</a>
+  <button id="theme-toggle" class="theme-toggle" type="button" hidden>
+    <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M8 1a7 7 0 0 0 0 14z" fill="currentColor"/>
+    </svg>
+  </button>
 </nav>
 
 <main>
@@ -55,6 +68,30 @@
 <footer>
   <p>&copy; Nitin Shyamkumar</p>
 </footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById("theme-toggle");
+  function current() {
+    return root.getAttribute("data-theme") ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
+  function describe() {
+    var next = current() === "dark" ? "light" : "dark";
+    btn.setAttribute("aria-label", "Switch to " + next + " theme");
+    btn.title = "Switch to " + next + " theme";
+  }
+  btn.hidden = false;
+  describe();
+  btn.addEventListener("click", function () {
+    var next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    describe();
+  });
+})();
+</script>
 
 </body>
 </html>
