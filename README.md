@@ -6,13 +6,15 @@ renders it into `index.html` using `template.html` and `style.css`.
 ## Editing
 
 1. Edit the markdown under `content/`:
-   - `current.md`, `resume.md`, `links.md`, `publications-intro.md`
-   - `past/*.md` — one file per subsection, ordered by the numeric filename
-     prefix, each with a `title:` front matter key
+   - `current.md`, `past.md`, `resume.md`, `links.md`, `publications-intro.md`
    - `publications/*.md` — one file per paper, ordered newest-first by the
      `YYYY-MM-DD-` filename prefix, with `title`, `authors`, `venue`, `date`,
      and `url` front matter; the body is the abstract
-2. Run the build:
+2. Preview while you edit:
+   ```
+   python3 serve.py          # http://localhost:8000, rebuilds on save
+   ```
+   Or build once, without a server:
    ```
    python3 build.py
    ```
@@ -30,6 +32,7 @@ renders it into `index.html` using `template.html` and `style.css`.
 | `template.html` | page skeleton with `{{placeholders}}` |
 | `style.css` | all styling, shipped as-is |
 | `build.py` | the generator |
+| `serve.py` | local preview: rebuild on save, serve on :8000 |
 | `vendor/markdown2.py` | vendored MIT parser, never edited |
 | `index.html`, `404.html`, `*/index.html` | **generated** — do not hand-edit |
 | `files/`, `images/` | PDFs and the headshot |

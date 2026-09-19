@@ -1,1 +1,1 @@
-[Resume (PDF)](/files/ShyamkumarNitinResume.pdf)
+Resume / CV available on request.

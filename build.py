@@ -40,7 +40,6 @@ REDIRECTS = {
 }
 
 DATE_PREFIX = re.compile(r"^\d{4}-\d{2}-\d{2}-")
-ORDER_PREFIX = re.compile(r"^\d+-")
 
 
 def render(path):
@@ -64,25 +63,6 @@ def unquote(value):
     if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
         return value[1:-1]
     return value
-
-
-def render_past():
-    """One block per subsection of Past, ordered by the numeric filename prefix."""
-    parts = []
-    for path in sorted((ROOT / "content" / "past").glob("*.md")):
-        meta, body = render(path)
-        if "title" not in meta:
-            raise SystemExit(f"{path.name}: missing front matter key 'title'")
-        slug = ORDER_PREFIX.sub("", path.stem)
-        parts.append(
-            f'<div class="entry" id="{slug}">\n'
-            f'  <h3>{html.escape(meta["title"])}</h3>\n'
-            f"  {body}\n"
-            f"</div>"
-        )
-    if not parts:
-        raise SystemExit("no entries found in content/past/")
-    return "\n".join(parts)
 
 
 def render_publications():
@@ -156,7 +136,7 @@ def main():
     fragments = {
         "links": render(ROOT / "content" / "links.md")[1],
         "current": render(ROOT / "content" / "current.md")[1],
-        "past": render_past(),
+        "past": render(ROOT / "content" / "past.md")[1],
         "publications_intro": render(ROOT / "content" / "publications-intro.md")[1],
         "publications": render_publications(),
         "resume": render(ROOT / "content" / "resume.md")[1],

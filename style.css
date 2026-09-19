@@ -204,19 +204,6 @@ p:last-child { margin-bottom: 0; }
 .intro { margin-bottom: 2.25rem; color: var(--muted); font-size: 0.9375rem; }
 .intro p:last-child { margin-bottom: 0; }
 
-/* ---------- past ---------- */
-
-.entry { padding-top: 1.65rem; scroll-margin-top: 4rem; }
-.entry:first-child { padding-top: 0; }
-
-.entry h3 {
-  margin: 0 0 0.35rem;
-  font-family: var(--sans);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.035em;
-}
-
 /* ---------- publications ---------- */
 
 .pub {
