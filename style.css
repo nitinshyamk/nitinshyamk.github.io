@@ -140,10 +140,19 @@ a:hover { text-decoration-color: currentColor; }
 
 /* ---------- section nav ---------- */
 
+/* Sticks to the top of the viewport once the masthead scrolls away, so the
+   section links stay reachable. The negative margin lets the rule span the
+   full column while the bar's own padding keeps the links aligned with the
+   body text. */
 .sections {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   display: flex;
   gap: 1.5rem;
-  padding: 0.85rem 0;
+  margin: 0 -1.5rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--bg);
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   font-family: var(--sans);
@@ -174,7 +183,7 @@ a:hover { text-decoration-color: currentColor; }
 
 /* ---------- sections ---------- */
 
-main section { padding: 3rem 0 0; scroll-margin-top: 1.5rem; }
+main section { padding: 3rem 0 0; scroll-margin-top: 4rem; }
 
 h2 {
   margin: 0 0 1.25rem;
@@ -195,12 +204,25 @@ p:last-child { margin-bottom: 0; }
 .intro { margin-bottom: 2.25rem; color: var(--muted); font-size: 0.9375rem; }
 .intro p:last-child { margin-bottom: 0; }
 
+/* ---------- past ---------- */
+
+.entry { padding-top: 1.65rem; scroll-margin-top: 4rem; }
+.entry:first-child { padding-top: 0; }
+
+.entry h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+}
+
 /* ---------- publications ---------- */
 
 .pub {
   padding: 1.75rem 0;
   border-top: 1px solid var(--rule-soft);
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: 4rem;
 }
 .pub:first-of-type { border-top: 0; padding-top: 0; }
 
@@ -286,6 +308,7 @@ footer {
 @media (max-width: 34rem) {
   body { padding: 0 1.25rem 3rem; }
   .theme-toggle { top: 1rem; right: 1.25rem; }
+  .sections { margin: 0 -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
   .masthead {
     flex-direction: column;
     align-items: flex-start;

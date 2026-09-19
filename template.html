@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<a class="skip" href="#about">Skip to content</a>
+<a class="skip" href="#current">Skip to content</a>
 
 <button id="theme-toggle" class="theme-toggle" type="button" hidden>
   <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -39,16 +39,22 @@
 </header>
 
 <nav class="sections" aria-label="Sections">
-  <a href="#about">About</a>
+  <a href="#current">Current</a>
+  <a href="#past">Past</a>
   <a href="#publications">Publications</a>
   <a href="#resume">Resume</a>
 </nav>
 
 <main>
 
-<section id="about">
-  <h2>About</h2>
-  {{about}}
+<section id="current">
+  <h2>Current</h2>
+  {{current}}
+</section>
+
+<section id="past">
+  <h2>Past</h2>
+  {{past}}
 </section>
 
 <section id="publications">
