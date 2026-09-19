@@ -204,6 +204,10 @@ p:last-child { margin-bottom: 0; }
 .intro { margin-bottom: 2.25rem; color: var(--muted); font-size: 0.9375rem; }
 .intro p:last-child { margin-bottom: 0; }
 
+/* Prose-heavy sections: a step down from the body size so the long
+   paragraphs sit quieter than the publication titles. */
+#current, #past { font-size: 0.9375rem; line-height: 1.7; }
+
 /* ---------- publications ---------- */
 
 .pub {
@@ -228,6 +232,89 @@ p:last-child { margin-bottom: 0; }
   margin-top: 0.85rem;
   font-size: 0.9375rem;
   color: var(--muted);
+}
+
+/* The summary and the abstract are two rows of one grid. Opening the pub
+   hands the row height from the first to the second, and the contents
+   crossfade across the swap. Without scripting both rows stay at `auto`,
+   so the abstract is simply there. */
+.js .pub-body {
+  display: grid;
+  grid-template-rows: 1fr 0fr;
+  transition: grid-template-rows 340ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.js .pub-body[data-open="true"] { grid-template-rows: 0fr 1fr; }
+
+.js .pub-fold { min-height: 0; overflow: hidden; }
+.js .pub-fold > * { transition: opacity 200ms ease; }
+
+/* A collapsed row is not just clipped -- it is out of the tab order too. */
+.js .pub-fold-abstract {
+  visibility: hidden;
+  transition: visibility 0s linear 340ms;
+}
+.js .pub-fold-abstract > * { opacity: 0; }
+.js .pub-body[data-open="true"] .pub-fold-abstract {
+  visibility: visible;
+  transition-delay: 0s;
+}
+.js .pub-body[data-open="true"] .pub-fold-abstract > * {
+  opacity: 1;
+  transition-delay: 140ms;
+}
+
+.js .pub-body[data-open="true"] .pub-fold-summary {
+  visibility: hidden;
+  transition: visibility 0s linear 340ms;
+}
+.js .pub-body[data-open="true"] .pub-fold-summary > * { opacity: 0; }
+
+.pub-summary {
+  display: block;
+  width: 100%;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--serif);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  text-align: left;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline dotted var(--rule);
+  text-underline-offset: 0.18em;
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+}
+.pub-summary:hover {
+  color: var(--ink);
+  text-decoration-color: var(--faint);
+}
+
+.pub-less {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--faint);
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+.pub-less:hover { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .pub-body,
+  .js .pub-fold > *,
+  .pub-summary,
+  .pub-less { transition: none; }
+  /* Nothing is fading, so the folded row should leave the tab order at once. */
+  .js .pub-fold-abstract,
+  .js .pub-body[data-open="true"] .pub-fold-summary { transition-delay: 0s; }
 }
 
 /* ---------- generic markdown output ---------- */
@@ -313,7 +400,10 @@ footer {
 @media print {
   :root { --bg: #fff; --ink: #000; --muted: #333; --faint: #555; --rule: #bbb; --rule-soft: #ddd; }
   body { max-width: none; font-size: 11pt; }
-  .skip, .sections { display: none; }
+  .skip, .sections, .pub-summary, .pub-less { display: none; }
   .pub { break-inside: avoid; }
+  .js .pub-body { grid-template-rows: auto auto; }
+  .js .pub-fold-abstract { visibility: visible; }
+  .js .pub-fold-abstract > * { opacity: 1; }
   a { text-decoration: none; }
 }

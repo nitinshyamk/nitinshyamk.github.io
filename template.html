@@ -9,7 +9,9 @@
 <link rel="canonical" href="https://nitinshyamk.github.io/">
 <link rel="stylesheet" href="/style.css">
 <script>
-  /* Applied before first paint so a stored choice never flashes. */
+  /* Applied before first paint so a stored choice never flashes. The `js`
+     class gates the folded abstracts: without scripting they stay open. */
+  document.documentElement.className += " js";
   try {
     var t = localStorage.getItem("theme");
     if (t) document.documentElement.setAttribute("data-theme", t);
@@ -97,6 +99,35 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
     describe();
   });
+})();
+
+/* Publications: the summary line and the full abstract trade places. */
+(function () {
+  var bodies = document.querySelectorAll(".pub-body");
+  Array.prototype.forEach.call(bodies, function (body) {
+    var summary = body.querySelector(".pub-summary");
+    function set(open) {
+      body.setAttribute("data-open", open ? "true" : "false");
+      summary.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    set(false);
+    Array.prototype.forEach.call(body.querySelectorAll("[data-toggle]"), function (el) {
+      el.addEventListener("click", function () {
+        set(body.getAttribute("data-open") !== "true");
+      });
+    });
+  });
+
+  /* Arriving on a publication's own anchor opens it. */
+  function openTarget() {
+    var id = location.hash.slice(1);
+    var pub = id && document.getElementById(id);
+    if (!pub || !pub.classList.contains("pub")) return;
+    var btn = pub.querySelector(".pub-summary");
+    if (btn && btn.getAttribute("aria-expanded") === "false") btn.click();
+  }
+  openTarget();
+  addEventListener("hashchange", openTarget);
 })();
 </script>
 

@@ -41,6 +41,16 @@ REDIRECTS = {
 
 DATE_PREFIX = re.compile(r"^\d{4}-\d{2}-\d{2}-")
 
+# Any link that leaves this page opens in a new tab; in-page anchors stay put.
+OFFSITE_LINK = re.compile(r'<a\s+href="(?!#)([^"]*)"')
+
+
+def new_tab(markup):
+    return OFFSITE_LINK.sub(
+        lambda m: f'<a href="{m.group(1)}" target="_blank" rel="noopener noreferrer"',
+        markup,
+    )
+
 
 def render(path):
     """Render a markdown file to (metadata dict, html string).
@@ -54,7 +64,7 @@ def render(path):
     extras = EXTRAS if fenced else [e for e in EXTRAS if e != "metadata"]
     out = markdown2.markdown(text, extras=extras)
     meta = {k: unquote(v) for k, v in (getattr(out, "metadata", None) or {}).items()}
-    return meta, str(out).strip()
+    return meta, new_tab(str(out).strip())
 
 
 def unquote(value):
@@ -66,11 +76,15 @@ def unquote(value):
 
 
 def render_publications():
-    """One <article> per publication, newest first (filenames are date-prefixed)."""
+    """One <article> per publication, newest first (filenames are date-prefixed).
+
+    The abstract starts folded away behind a one-line summary; the two swap
+    places on click (see the .pub-body rules in style.css).
+    """
     parts = []
     for path in sorted((ROOT / "content" / "publications").glob("*.md"), reverse=True):
         meta, abstract = render(path)
-        for key in ("title", "authors", "venue", "date", "url"):
+        for key in ("title", "authors", "venue", "date", "url", "summary"):
             if key not in meta:
                 raise SystemExit(f"{path.name}: missing front matter key '{key}'")
         slug = DATE_PREFIX.sub("", path.stem)
@@ -78,11 +92,22 @@ def render_publications():
         url = html.escape(meta["url"], quote=True)
         parts.append(
             f'<article class="pub" id="{slug}">\n'
-            f'  <h3><a href="{url}">{title}</a></h3>\n'
+            f'  <h3><a href="{url}" target="_blank" rel="noopener noreferrer">{title}</a></h3>\n'
             f'  <p class="authors">{html.escape(meta["authors"])}</p>\n'
             f'  <p class="venue">{html.escape(meta["venue"])} '
             f'<span class="year">{html.escape(meta["date"][:4])}</span></p>\n'
-            f'  <div class="abstract">{abstract}</div>\n'
+            f'  <div class="pub-body">\n'
+            f'    <div class="pub-fold pub-fold-summary">\n'
+            f'      <button class="pub-summary" type="button" data-toggle\n'
+            f'              aria-expanded="false" aria-controls="{slug}-abstract">'
+            f'{html.escape(meta["summary"])}</button>\n'
+            f'    </div>\n'
+            f'    <div class="pub-fold pub-fold-abstract">\n'
+            f'      <div class="abstract" id="{slug}-abstract">{abstract}\n'
+            f'        <button class="pub-less" type="button" data-toggle>Show less</button>\n'
+            f'      </div>\n'
+            f'    </div>\n'
+            f'  </div>\n'
             f"</article>"
         )
     if not parts:

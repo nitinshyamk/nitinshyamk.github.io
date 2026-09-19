@@ -9,7 +9,9 @@
 <link rel="canonical" href="https://nitinshyamk.github.io/">
 <link rel="stylesheet" href="/style.css">
 <script>
-  /* Applied before first paint so a stored choice never flashes. */
+  /* Applied before first paint so a stored choice never flashes. The `js`
+     class gates the folded abstracts: without scripting they stay open. */
+  document.documentElement.className += " js";
   try {
     var t = localStorage.getItem("theme");
     if (t) document.documentElement.setAttribute("data-theme", t);
@@ -34,10 +36,10 @@
     <p class="tagline">Applied mathematics &middot; control &middot; software</p>
     <nav class="links" aria-label="Elsewhere">
       <ul>
-<li><a href="https://github.com/nitinshyamk">GitHub</a></li>
-<li><a href="https://www.linkedin.com/in/nitinshyamkumar">LinkedIn</a></li>
-<li><a href="https://twitter.com/nitinshyamk">Twitter</a></li>
-<li><a href="https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en&oi=ao">Google Scholar</a></li>
+<li><a href="https://github.com/nitinshyamk" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/nitinshyamkumar" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+<li><a href="https://twitter.com/nitinshyamk" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+<li><a href="https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
 </ul>
     </nav>
   </div>
@@ -54,50 +56,100 @@
 
 <section id="current">
   <h2>Current</h2>
-  <p>I'm currently an engineer at <a href="https://www.hadrian.co/">Hadrian</a>. I recently began working in our DFM software domain. I spent my first three years at Hadrian helping build out our automated CMM inspection capabilities initially as an IC, then as the TLM for a team of six. We covered two domains: automated inspection routine generation, and mechatronic robotic systems. I was heavily involved in the former as an IC, and the latter as a manager. My work and responsibilities covered a large surface area in various depth from technical exploration to management ranging from product interviews and design, managing team and system operations, building computational geometry algorithms, custom CAD extensions, full stack web services, new product interfaces and distributed mechatronic systems.</p>
+  <p>I'm currently an engineer at <a href="https://www.hadrian.co/" target="_blank" rel="noopener noreferrer">Hadrian</a>. I recently began working in our DFM software domain. I spent my first three years at Hadrian helping build out our automated CMM inspection capabilities initially as an IC, then as the TLM for a team of six. We covered two domains: automated inspection routine generation, and mechatronic robotic systems. I was heavily involved in the former as an IC, and the latter as a manager. My work and responsibilities covered a large surface area in various depth from technical exploration to management ranging from product interviews and design, managing team and system operations, building computational geometry algorithms, custom CAD extensions, full stack web services, new product interfaces and distributed mechatronic systems.</p>
 </section>
 
 <section id="past">
   <h2>Past</h2>
   <p>Prior to Hadrian, I worked for three years as a software engineer at Applied Predictive Technologies (acquired by Mastercard) on full stack tools and pipelines for statistical modeling. I learned about causal inference, did some applied research efforts, built a lot of full stack web products, provided technical and team leadership, and co-led APT's Cornell recruiting effort and contributed to some diversity initiatives. I also briefly did some contract work at a Google Ventures funded startup called Sensorum Technologies.</p>
 
-<p>MS in Computer Science from NYU Courant with a 3.96 and a published paper in control theory. Some other research projects in networks and differentiable computing for physics simulations. Originally came in as a fully funded PhD candidate but ended up leaving after 2 years. I learned a lot about navigating high uncertainty domains and managing up from the experience. Phi Beta Kappa from Cornell University as a Tanner Dean's Scholar with B.A.s in Mathematics and Computer Science and a 4.01 GPA. Had two publications, one in computational neuroscience, and another in randomized sketches for solving research systems.</p>
+<p>I have three degrees - an MS in Computer Science from NYU Courant with a 3.96, and B.A.s in Math and Computer Science from Cornell University where I graduated Phi Beta Kappa with a 4.01 GPA. I mostly did research. At Cornell, I published two papers - one in computational neuroscience and another in randomized sketches for solving linear systems. I went to NYU as a MacCracken fellow for a fully funded PhD, but left after two years with an MS having learned a lot about navigating high uncertainty domains and managing up.</p>
 </section>
 
 <section id="publications">
   <h2>Publications</h2>
   <div class="intro">
-  <p>Also listed at my <a href="https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en&oi=ao">Google Scholar profile</a></p>
+  <p>Also listed at my <a href="https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar profile</a></p>
   </div>
   <article class="pub" id="context-aware-control">
-  <h3><a href="https://cims.nyu.edu/~pehersto/preprints/contextc_preprint.pdf">Towards context-aware learning for control: Balancing stability and model-learning error</a></h3>
+  <h3><a href="https://cims.nyu.edu/~pehersto/preprints/contextc_preprint.pdf" target="_blank" rel="noopener noreferrer">Towards context-aware learning for control: Balancing stability and model-learning error</a></h3>
   <p class="authors">Nitin Shyamkumar, Serkan Gugercin, Benjamin Peherstorfer</p>
   <p class="venue">IEEE American Control Conference <span class="year">2022</span></p>
-  <div class="abstract"><p>Classical data-driven control typically follows the learn-then-stabilize scheme where first a model of the system of interest is identified from data and then a controller is constructed based on the learned model. However, learning a model from data is challenging since it can incur high training costs and the model quality critically depends on the available data. In this work, we address how well one needs to learn a model to derive a controller by formalizing the trade off between learning error and controller performance in the specific setting of robust H-infinity control. We propose a bound on the stability radius of a robust controller with respect to the error of the learned model. The proposed analysis suggests that tolerating an increased learning error leads to a small decrease in the performance objective of the controller. Numerical experiments with systems from aerospace engineering demonstrate that judiciously balancing learning error and control performance can indeed reduce the number of data points by one order of magnitude with less than 5% decrease in control performance as measured with the H-infinity stability radius.</p></div>
+  <div class="pub-body">
+    <div class="pub-fold pub-fold-summary">
+      <button class="pub-summary" type="button" data-toggle
+              aria-expanded="false" aria-controls="context-aware-control-abstract">Bounding a robust controller&#x27;s stability radius against model error shows that tolerating more learning error cuts the data required by an order of magnitude while costing under 5% of control performance.</button>
+    </div>
+    <div class="pub-fold pub-fold-abstract">
+      <div class="abstract" id="context-aware-control-abstract"><p>Classical data-driven control typically follows the learn-then-stabilize scheme where first a model of the system of interest is identified from data and then a controller is constructed based on the learned model. However, learning a model from data is challenging since it can incur high training costs and the model quality critically depends on the available data. In this work, we address how well one needs to learn a model to derive a controller by formalizing the trade off between learning error and controller performance in the specific setting of robust H-infinity control. We propose a bound on the stability radius of a robust controller with respect to the error of the learned model. The proposed analysis suggests that tolerating an increased learning error leads to a small decrease in the performance objective of the controller. Numerical experiments with systems from aerospace engineering demonstrate that judiciously balancing learning error and control performance can indeed reduce the number of data points by one order of magnitude with less than 5% decrease in control performance as measured with the H-infinity stability radius.</p>
+        <button class="pub-less" type="button" data-toggle>Show less</button>
+      </div>
+    </div>
+  </div>
 </article>
 <article class="pub" id="bbr-network-calculus">
-  <h3><a href="/files/SteadyStateAnalysisOfBBRUsingTheNetworkCalculusFramework.pdf">Steady State Analysis of BBR Using Network Calculus</a></h3>
+  <h3><a href="/files/SteadyStateAnalysisOfBBRUsingTheNetworkCalculusFramework.pdf" target="_blank" rel="noopener noreferrer">Steady State Analysis of BBR Using Network Calculus</a></h3>
   <p class="authors">Nitin Shyamkumar</p>
   <p class="venue">Preprint <span class="year">2021</span></p>
-  <div class="abstract"><p>Recently, Cardwell et. al. proposed the BBR algorithm to improve on TCP variants for congestion control. In contrast to packet loss based congestion control algorithms, BBR attempts to operate at the optimal operating point of a bandwidth constrained network where the delay is minimized and throughput is maximized. However, BBR is in its early stage and has numerous shortcomings. We examine poor performance on throughput in long latency networks in detail. We survey three different techniques from hybrid systems literature, including identifying Piecewise Affine systems, Max Min Plus Scaling systems, and the Min Plus service curve framework from the network calculus literature. We develop an analytical explanation of the performance degradation for longer latencies and design a steady state model for BBR in the network calculus framework. Our analytical explanation also suggests two possible fixes to improve BBR throughput in long latency networks.</p></div>
+  <div class="pub-body">
+    <div class="pub-fold pub-fold-summary">
+      <button class="pub-summary" type="button" data-toggle
+              aria-expanded="false" aria-controls="bbr-network-calculus-abstract">A network-calculus steady-state model explains why BBR gives up throughput on long-latency networks, and suggests two fixes for it.</button>
+    </div>
+    <div class="pub-fold pub-fold-abstract">
+      <div class="abstract" id="bbr-network-calculus-abstract"><p>Recently, Cardwell et. al. proposed the BBR algorithm to improve on TCP variants for congestion control. In contrast to packet loss based congestion control algorithms, BBR attempts to operate at the optimal operating point of a bandwidth constrained network where the delay is minimized and throughput is maximized. However, BBR is in its early stage and has numerous shortcomings. We examine poor performance on throughput in long latency networks in detail. We survey three different techniques from hybrid systems literature, including identifying Piecewise Affine systems, Max Min Plus Scaling systems, and the Min Plus service curve framework from the network calculus literature. We develop an analytical explanation of the performance degradation for longer latencies and design a steady state model for BBR in the network calculus framework. Our analytical explanation also suggests two possible fixes to improve BBR throughput in long latency networks.</p>
+        <button class="pub-less" type="button" data-toggle>Show less</button>
+      </div>
+    </div>
+  </div>
 </article>
 <article class="pub" id="physics-informed-ml-control">
-  <h3><a href="/files/SolvingControlProblemsUsingPhysicsInformedMachineLearningForPDEs.pdf">Solving control problems with physics informed machine learning for partial differential equations</a></h3>
+  <h3><a href="/files/SolvingControlProblemsUsingPhysicsInformedMachineLearningForPDEs.pdf" target="_blank" rel="noopener noreferrer">Solving control problems with physics informed machine learning for partial differential equations</a></h3>
   <p class="authors">Nitin Shyamkumar, Arasu Arun, Leo Wu</p>
   <p class="venue">Preprint <span class="year">2020</span></p>
-  <div class="abstract"><p>Physics informed machine learning consists of various machine learning methods for learning partial differential equation (PDE) models and solutions. We empirically study three methods from this field for learning solutions to a PDE model, focusing on the Hamilton Jacobi Bellman PDE for continuous time control. We find that the methods learn accurate solutions for high dimensional linear systems. Although the methods have some shortcomings, they achieve promising results on the Cartpole task from nonlinear control.</p></div>
+  <div class="pub-body">
+    <div class="pub-fold pub-fold-summary">
+      <button class="pub-summary" type="button" data-toggle
+              aria-expanded="false" aria-controls="physics-informed-ml-control-abstract">Three physics-informed learning methods recover accurate Hamilton-Jacobi-Bellman solutions for high-dimensional linear systems and still hold up on the nonlinear Cartpole task.</button>
+    </div>
+    <div class="pub-fold pub-fold-abstract">
+      <div class="abstract" id="physics-informed-ml-control-abstract"><p>Physics informed machine learning consists of various machine learning methods for learning partial differential equation (PDE) models and solutions. We empirically study three methods from this field for learning solutions to a PDE model, focusing on the Hamilton Jacobi Bellman PDE for continuous time control. We find that the methods learn accurate solutions for high dimensional linear systems. Although the methods have some shortcomings, they achieve promising results on the Cartpole task from nonlinear control.</p>
+        <button class="pub-less" type="button" data-toggle>Show less</button>
+      </div>
+    </div>
+  </div>
 </article>
 <article class="pub" id="automated-center-out-reach-task">
-  <h3><a href="https://journals.physiology.org/doi/full/10.1152/jn.00667.2018">Automated home cage training of mice in a hold-still center-out reach task</a></h3>
+  <h3><a href="https://journals.physiology.org/doi/full/10.1152/jn.00667.2018" target="_blank" rel="noopener noreferrer">Automated home cage training of mice in a hold-still center-out reach task</a></h3>
   <p class="authors">Tejapratap Bollu, Samuel C. Whitehead, Nikil Prasad, Jackson Walker, Nitin Shyamkumar, Raghav Subramaniam, Brian Kardon, Itai Cohen, and Jesse H. Goldberg</p>
   <p class="venue">Journal of Neurophysiology <span class="year">2019</span></p>
-  <div class="abstract"><p>An obstacle to understanding neural mechanisms of movement is the complex, distributed nature of the mammalian motor system. Here we present a novel behavioral paradigm for high-throughput dissection of neural circuits underlying mouse forelimb control. Custom touch-sensing joysticks were used to quantify mouse forelimb trajectories with micron-millisecond spatiotemporal resolution. Joysticks were integrated into computer-controlled, rack-mountable home cages, enabling batches of mice to be trained in parallel. Closed loop behavioral analysis enabled online control of reward delivery for automated training. We used this system to show that mice can learn, with no human handling, a direction-specific hold-still center-out reach task in which a mouse first held its right forepaw still before reaching out to learned spatial targets. Stabilogram diffusion analysis of submillimeter-scale micromovements produced during the hold demonstrate that an active control process, akin to upright balance, was implemented to maintain forepaw stability. Trajectory decomposition methods, previously used in primates, were used to segment hundreds of thousands of forelimb trajectories into millions of constituent kinematic primitives. This system enables rapid dissection of neural circuits for controlling motion primitives from which forelimb sequences are built.</p></div>
+  <div class="pub-body">
+    <div class="pub-fold pub-fold-summary">
+      <button class="pub-summary" type="button" data-toggle
+              aria-expanded="false" aria-controls="automated-center-out-reach-task-abstract">Home-cage joystick rigs trained mice to hold still and reach to learned targets with no human handling, and resolved their forelimb motion into millions of kinematic primitives for circuit-level study.</button>
+    </div>
+    <div class="pub-fold pub-fold-abstract">
+      <div class="abstract" id="automated-center-out-reach-task-abstract"><p>An obstacle to understanding neural mechanisms of movement is the complex, distributed nature of the mammalian motor system. Here we present a novel behavioral paradigm for high-throughput dissection of neural circuits underlying mouse forelimb control. Custom touch-sensing joysticks were used to quantify mouse forelimb trajectories with micron-millisecond spatiotemporal resolution. Joysticks were integrated into computer-controlled, rack-mountable home cages, enabling batches of mice to be trained in parallel. Closed loop behavioral analysis enabled online control of reward delivery for automated training. We used this system to show that mice can learn, with no human handling, a direction-specific hold-still center-out reach task in which a mouse first held its right forepaw still before reaching out to learned spatial targets. Stabilogram diffusion analysis of submillimeter-scale micromovements produced during the hold demonstrate that an active control process, akin to upright balance, was implemented to maintain forepaw stability. Trajectory decomposition methods, previously used in primates, were used to segment hundreds of thousands of forelimb trajectories into millions of constituent kinematic primitives. This system enables rapid dissection of neural circuits for controlling motion primitives from which forelimb sequences are built.</p>
+        <button class="pub-less" type="button" data-toggle>Show less</button>
+      </div>
+    </div>
+  </div>
 </article>
 <article class="pub" id="sublinear-estimation-sparse">
-  <h3><a href="https://ieeexplore.ieee.org/document/7852323">Sublinear estimation of a single element in sparse linear systems</a></h3>
+  <h3><a href="https://ieeexplore.ieee.org/document/7852323" target="_blank" rel="noopener noreferrer">Sublinear estimation of a single element in sparse linear systems</a></h3>
   <p class="authors">Nitin Shyamkumar, Siddhartha Banerjee, Peter Lofgren</p>
   <p class="venue">54th Annual Allerton Conference on Communication, Control, and Computing <span class="year">2016</span></p>
-  <div class="abstract"><p>We present a fast bidirectional algorithm for estimating a single element of the product of a matrix power and vector. This is an important primitive in many applications; in particular, we describe how it can be used to estimate a single element in the solution of a linear system Ax = b, with sublinear average-case running time guarantees for sparse systems. Our work combines the von Neumann-Ulam MCMC scheme for matrix multiplication with recent developments in bidirectional algorithms for estimating random-walk metrics. In particular, given a target additive-error threshold, we show how to combine a reverse local-variational technique with forward MCMC sampling, such that the resulting algorithm is order-wise faster than each individual approach.</p></div>
+  <div class="pub-body">
+    <div class="pub-fold pub-fold-summary">
+      <button class="pub-summary" type="button" data-toggle
+              aria-expanded="false" aria-controls="sublinear-estimation-sparse-abstract">Pairing a reverse local-variational pass with forward MCMC sampling estimates a single entry of a sparse linear system&#x27;s solution order-wise faster than either technique on its own.</button>
+    </div>
+    <div class="pub-fold pub-fold-abstract">
+      <div class="abstract" id="sublinear-estimation-sparse-abstract"><p>We present a fast bidirectional algorithm for estimating a single element of the product of a matrix power and vector. This is an important primitive in many applications; in particular, we describe how it can be used to estimate a single element in the solution of a linear system Ax = b, with sublinear average-case running time guarantees for sparse systems. Our work combines the von Neumann-Ulam MCMC scheme for matrix multiplication with recent developments in bidirectional algorithms for estimating random-walk metrics. In particular, given a target additive-error threshold, we show how to combine a reverse local-variational technique with forward MCMC sampling, such that the resulting algorithm is order-wise faster than each individual approach.</p>
+        <button class="pub-less" type="button" data-toggle>Show less</button>
+      </div>
+    </div>
+  </div>
 </article>
 </section>
 
@@ -133,6 +185,35 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
     describe();
   });
+})();
+
+/* Publications: the summary line and the full abstract trade places. */
+(function () {
+  var bodies = document.querySelectorAll(".pub-body");
+  Array.prototype.forEach.call(bodies, function (body) {
+    var summary = body.querySelector(".pub-summary");
+    function set(open) {
+      body.setAttribute("data-open", open ? "true" : "false");
+      summary.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    set(false);
+    Array.prototype.forEach.call(body.querySelectorAll("[data-toggle]"), function (el) {
+      el.addEventListener("click", function () {
+        set(body.getAttribute("data-open") !== "true");
+      });
+    });
+  });
+
+  /* Arriving on a publication's own anchor opens it. */
+  function openTarget() {
+    var id = location.hash.slice(1);
+    var pub = id && document.getElementById(id);
+    if (!pub || !pub.classList.contains("pub")) return;
+    var btn = pub.querySelector(".pub-summary");
+    if (btn && btn.getAttribute("aria-expanded") === "false") btn.click();
+  }
+  openTarget();
+  addEventListener("hashchange", openTarget);
 })();
 </script>
 
