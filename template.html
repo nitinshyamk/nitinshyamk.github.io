@@ -106,17 +106,6 @@
       });
     });
   });
-
-  /* Arriving on a publication's own anchor opens it. */
-  function openTarget() {
-    var id = location.hash.slice(1);
-    var pub = id && document.getElementById(id);
-    if (!pub || !pub.classList.contains("pub")) return;
-    var btn = pub.querySelector(".pub-summary");
-    if (btn && btn.getAttribute("aria-expanded") === "false") btn.click();
-  }
-  openTarget();
-  addEventListener("hashchange", openTarget);
 })();
 </script>
 
