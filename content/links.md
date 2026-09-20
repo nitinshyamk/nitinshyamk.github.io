@@ -1,4 +1,4 @@
 - [GitHub](https://github.com/nitinshyamk)
 - [LinkedIn](https://www.linkedin.com/in/nitinshyamkumar)
-- [Twitter](https://twitter.com/nitinshyamk)
+- [X](https://x.com/nitinshyamk)
 - [Google Scholar](https://scholar.google.com/citations?user=lF0ZyBQAAAAJ&hl=en&oi=ao)
