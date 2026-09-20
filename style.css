@@ -1,5 +1,17 @@
 /* Nitin Shyamkumar — single-page site. Monochrome by design: the only
-   color on the page comes from the photograph. */
+   color on the page comes from the photograph.
+
+   Three text roles, and nothing else:
+
+     Title  serif, 600           the name (2rem), publication titles (1.125rem)
+     Prose  serif 0.9375/1.7     body copy, summaries, abstracts
+     Label  sans 0.8125rem       everything ancillary, in two casings:
+                                 UPPERCASE + tracked for structure (section
+                                 headings, section nav, footer), sentence case
+                                 for metadata (tagline, publication meta)
+
+   One sans size, one prose size. Uppercase means "this is structure", so it
+   is never used for content. */
 
 :root {
   --bg:        #ffffff;
@@ -13,6 +25,8 @@
   color-scheme: light;
 
   --measure: 44rem;
+  --section-space: 1.75rem;  /* rule to the text beneath it */
+  --fade: 180ms ease;     /* every colour change on the page */
   --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -55,7 +69,7 @@ body {
   max-width: var(--measure);
   background: var(--bg);
   color: var(--ink);
-  font: 1.0625rem/1.65 var(--serif);
+  font: 0.9375rem/1.7 var(--serif);
   text-rendering: optimizeLegibility;
 }
 
@@ -63,10 +77,11 @@ body {
 
 a {
   color: inherit;
+  text-decoration-style: dotted;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
   text-decoration-color: var(--rule);
-  transition: text-decoration-color 120ms ease;
+  transition: color var(--fade), text-decoration-color var(--fade);
 }
 a:hover { text-decoration-color: currentColor; }
 
@@ -115,53 +130,25 @@ a:hover { text-decoration-color: currentColor; }
   line-height: 1.15;
 }
 
-.tagline {
-  margin: 0.4rem 0 0.9rem;
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.875rem;
-}
-
-.links ul {
+/* Icon row: the mark carries the meaning, so each link needs an accessible
+   name of its own (build.py writes aria-label and title from links.md). */
+.icons {
+  margin-top: 0.6rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.15rem;
-  margin: 0;
+  align-items: center;
+  gap: 0.6rem 1.05rem;
   padding: 0;
   list-style: none;
 }
-.links a {
-  font-family: var(--sans);
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
-  color: var(--muted);
+.icons a {
+  display: inline-flex;
+  color: var(--faint);
+  text-decoration: none;
+  transition: color var(--fade);
 }
-.links a:hover { color: var(--ink); }
-
-/* ---------- section nav ---------- */
-
-/* Sticks to the top of the viewport once the masthead scrolls away, so the
-   section links stay reachable. The negative margin lets the rule span the
-   full column while the bar's own padding keeps the links aligned with the
-   body text. */
-.sections {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0 -1.5rem;
-  padding: 0.85rem 1.5rem;
-  background: var(--bg);
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-}
-.sections a { color: var(--muted); text-decoration: none; }
-.sections a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.3em; }
+.icons a:hover { color: var(--ink); }
+.icons svg { display: block; width: 15px; height: 15px; }
 
 /* Top-right corner of the content column. Deliberately quiet: it sits at
    rule contrast until hovered. */
@@ -176,24 +163,64 @@ a:hover { text-decoration-color: currentColor; }
   border-radius: 50%;
   color: var(--rule);
   cursor: pointer;
-  transition: color 140ms ease;
+  transition: color var(--fade);
 }
 .theme-toggle:hover { color: var(--muted); }
 .theme-toggle svg { display: block; }
 
 /* ---------- sections ---------- */
 
-main section { padding: 3rem 0 0; scroll-margin-top: 4rem; }
+main section {
+  padding-top: 2rem;
+  scroll-margin-top: 0.5rem;
+}
+
+/* The label opens the line and its rule runs out to the column edge:
+   PAST ----------------------------------  */
+/* Pinned to the top for as long as its own section is on screen: sticky is
+   bounded by the parent, so each header hands off to the next one. The
+   background is what the prose scrolls under. */
+main section > h2 {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1;
+  margin: 0;
+  padding: 0.85rem 0;
+}
+main section > h2::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--rule-soft);
+}
+
+main section > .body { padding-top: 0.9rem; }
 
 h2 {
   margin: 0 0 1.25rem;
   font-family: var(--sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.09em;
   color: var(--faint);
 }
+
+/* The Publications heading is itself the link to the Scholar profile. */
+h2 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--fade);
+}
+h2 a:hover { color: var(--ink); }
+h2 svg { display: block; width: 13px; height: 13px; }
 
 h3 { margin: 0 0 0.4rem; font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
 h4 { margin: 1.75rem 0 0.5rem; font-size: 1rem; font-weight: 600; }
@@ -201,38 +228,33 @@ h4 { margin: 1.75rem 0 0.5rem; font-size: 1rem; font-weight: 600; }
 p { margin: 0 0 1.15rem; }
 p:last-child { margin-bottom: 0; }
 
-.intro { margin-bottom: 2.25rem; color: var(--muted); font-size: 0.9375rem; }
-.intro p:last-child { margin-bottom: 0; }
-
-/* Prose-heavy sections: a step down from the body size so the long
-   paragraphs sit quieter than the publication titles. */
-#current, #past { font-size: 0.9375rem; line-height: 1.7; }
-
 /* ---------- publications ---------- */
 
 .pub {
-  padding: 1.75rem 0;
-  border-top: 1px solid var(--rule-soft);
-  scroll-margin-top: 4rem;
+  padding-bottom: 2.25rem;
+  scroll-margin-top: 3.5rem;   /* clears the pinned header */
 }
-.pub:first-of-type { border-top: 0; padding-top: 0; }
+.pub:last-of-type { padding-bottom: 0; }
 
-.pub .authors,
-.pub .venue {
+.pub .meta {
   margin: 0;
   font-family: var(--sans);
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--muted);
 }
-.pub .venue { color: var(--faint); margin-top: 0.15rem; }
-.pub .venue .year::before { content: "\00b7\00a0"; }
+.pub .meta .venue { font-variant-caps: small-caps; }
 
+/* Prose sits at body colour so a summary reads as content, not as a control;
+   graying on hover is the only sign that there is more behind it. */
 .abstract {
   margin-top: 0.85rem;
-  font-size: 0.9375rem;
-  color: var(--muted);
+  color: var(--ink);
+  cursor: pointer;
+  transition: color var(--fade);
 }
+.abstract * { transition: color var(--fade); }
+.abstract:hover { color: var(--muted); }
 
 /* The summary and the abstract are two rows of one grid. Opening the pub
    hands the row height from the first to the second, and the contents
@@ -246,7 +268,9 @@ p:last-child { margin-bottom: 0; }
 .js .pub-body[data-open="true"] { grid-template-rows: 0fr 1fr; }
 
 .js .pub-fold { min-height: 0; overflow: hidden; }
-.js .pub-fold > * { transition: opacity 200ms ease; }
+/* This outranks .pub-summary/.abstract's own transitions, so it has to carry
+   the colour fade too or their hover colours snap. */
+.js .pub-fold > * { transition: opacity 200ms ease, color var(--fade); }
 
 /* A collapsed row is not just clipped -- it is out of the tab order too. */
 .js .pub-fold-abstract {
@@ -276,42 +300,39 @@ p:last-child { margin-bottom: 0; }
   padding: 0;
   background: none;
   border: 0;
-  font-family: var(--serif);
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font: inherit;
   text-align: left;
-  color: var(--muted);
-  cursor: pointer;
-  text-decoration: underline dotted var(--rule);
-  text-underline-offset: 0.18em;
-  transition: color 120ms ease, text-decoration-color 120ms ease;
-}
-.pub-summary:hover {
   color: var(--ink);
-  text-decoration-color: var(--faint);
-}
-
-.pub-less {
-  display: block;
-  margin-top: 0.75rem;
-  padding: 0;
-  background: none;
-  border: 0;
-  font-family: var(--sans);
-  font-size: 0.6875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--faint);
   cursor: pointer;
-  transition: color 120ms ease;
+  transition: color var(--fade);
 }
-.pub-less:hover { color: var(--ink); }
+.pub-summary:hover { color: var(--muted); }
+
+/* Clicking the abstract collapses it, which leaves keyboard users with no
+   way back -- so they get a control, hidden until focused, like .skip. */
+.pub-collapse {
+  position: absolute;
+  left: -9999px;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+}
+.pub-collapse:focus {
+  position: static;
+  left: auto;
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.6rem;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .js .pub-body,
   .js .pub-fold > *,
   .pub-summary,
-  .pub-less { transition: none; }
+  .abstract,
+  .abstract * { transition: none; }
   /* Nothing is fading, so the folded row should leave the tab order at once. */
   .js .pub-fold-abstract,
   .js .pub-body[data-open="true"] .pub-fold-summary { transition-delay: 0s; }
@@ -373,7 +394,7 @@ footer {
   padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
   font-family: var(--sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--faint);
 }
 
@@ -400,7 +421,9 @@ footer {
 @media print {
   :root { --bg: #fff; --ink: #000; --muted: #333; --faint: #555; --rule: #bbb; --rule-soft: #ddd; }
   body { max-width: none; font-size: 11pt; }
-  .skip, .sections, .pub-summary, .pub-less { display: none; }
+  .skip, .pub-summary, .pub-collapse { display: none; }
+  main section > h2::after { border-top-color: #bbb; }
+  .abstract { color: var(--ink); }
   .pub { break-inside: avoid; }
   .js .pub-body { grid-template-rows: auto auto; }
   .js .pub-fold-abstract { visibility: visible; }

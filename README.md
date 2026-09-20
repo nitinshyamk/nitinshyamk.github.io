@@ -6,10 +6,15 @@ renders it into `index.html` using `template.html` and `style.css`.
 ## Editing
 
 1. Edit the markdown under `content/`:
-   - `current.md`, `past.md`, `resume.md`, `links.md`, `publications-intro.md`
+   - `links.md` — the masthead icon row, one `- [Label](url)` per line; the
+     label picks the mark from `ICONS` in `build.py`, and the build fails if a
+     label has no icon
+   - `future.md`, `current.md`, `past.md` — one file per section, plain prose;
+     the section labels themselves live in `template.html`
    - `publications/*.md` — one file per paper, ordered newest-first by the
      `YYYY-MM-DD-` filename prefix, with `title`, `authors`, `venue`, `date`,
-     and `url` front matter; the body is the abstract
+     `url`, and `summary` front matter; the body is the abstract, folded behind
+     the summary on the page
 2. Preview while you edit:
    ```
    python3 serve.py          # http://localhost:8000, rebuilds on save

@@ -4,7 +4,7 @@ authors: Nitin Shyamkumar, Siddhartha Banerjee, Peter Lofgren
 venue: 54th Annual Allerton Conference on Communication, Control, and Computing
 date: 2016-10-01
 url: https://ieeexplore.ieee.org/document/7852323
-summary: Pairing a reverse local-variational pass with forward MCMC sampling estimates a single entry of a sparse linear system's solution order-wise faster than either technique on its own.
+summary: We developed a new algorithm to estimate a single element of a sparse linear system in sublinear time by combining a reverse variational technique with forward MCMC sampling.
 ---
 
 We present a fast bidirectional algorithm for estimating a single element of the product of a matrix power and vector. This is an important primitive in many applications; in particular, we describe how it can be used to estimate a single element in the solution of a linear system Ax = b, with sublinear average-case running time guarantees for sparse systems. Our work combines the von Neumann-Ulam MCMC scheme for matrix multiplication with recent developments in bidirectional algorithms for estimating random-walk metrics. In particular, given a target additive-error threshold, we show how to combine a reverse local-variational technique with forward MCMC sampling, such that the resulting algorithm is order-wise faster than each individual approach.

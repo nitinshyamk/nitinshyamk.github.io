@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<a class="skip" href="#current">Skip to content</a>
+<a class="skip" href="#future">Skip to content</a>
 
 <button id="theme-toggle" class="theme-toggle" type="button" hidden>
   <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -33,43 +33,32 @@
   <img class="portrait" src="/images/mepic.jpg" alt="Nitin Shyamkumar" width="498" height="498">
   <div class="identity">
     <h1>Nitin Shyamkumar</h1>
-    <p class="tagline">Applied mathematics &middot; control &middot; software</p>
     <nav class="links" aria-label="Elsewhere">
       {{links}}
     </nav>
   </div>
 </header>
 
-<nav class="sections" aria-label="Sections">
-  <a href="#current">Current</a>
-  <a href="#past">Past</a>
-  <a href="#publications">Publications</a>
-  <a href="#resume">Resume</a>
-</nav>
-
 <main>
+
+<section id="future">
+  <h2>Future</h2>
+  <div class="body">{{future}}</div>
+</section>
 
 <section id="current">
   <h2>Current</h2>
-  {{current}}
+  <div class="body">{{current}}</div>
 </section>
 
 <section id="past">
   <h2>Past</h2>
-  {{past}}
+  <div class="body">{{past}}</div>
 </section>
 
 <section id="publications">
-  <h2>Publications</h2>
-  <div class="intro">
-  {{publications_intro}}
-  </div>
-  {{publications}}
-</section>
-
-<section id="resume">
-  <h2>Resume</h2>
-  {{resume}}
+  <h2>{{publications_heading}}</h2>
+  <div class="body">{{publications}}</div>
 </section>
 
 </main>

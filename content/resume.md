@@ -1,1 +1,0 @@
-Resume / CV available on request.

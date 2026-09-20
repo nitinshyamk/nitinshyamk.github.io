@@ -4,7 +4,7 @@ authors: Nitin Shyamkumar, Arasu Arun, Leo Wu
 venue: Preprint
 date: 2020-12-10
 url: /files/SolvingControlProblemsUsingPhysicsInformedMachineLearningForPDEs.pdf
-summary: Three physics-informed learning methods recover accurate Hamilton-Jacobi-Bellman solutions for high-dimensional linear systems and still hold up on the nonlinear Cartpole task.
+summary: We perform an empirical study of physics-informed learning methods for stochastic control problems, and fine one that outperforms classical model free RL on the nonlinear Hamilton Jacobi Bellman cartpole problem.
 ---
 
 Physics informed machine learning consists of various machine learning methods for learning partial differential equation (PDE) models and solutions. We empirically study three methods from this field for learning solutions to a PDE model, focusing on the Hamilton Jacobi Bellman PDE for continuous time control. We find that the methods learn accurate solutions for high dimensional linear systems. Although the methods have some shortcomings, they achieve promising results on the Cartpole task from nonlinear control.
